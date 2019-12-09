@@ -15,8 +15,8 @@ class UsersController extends Controller {
         $this->middleware('guest');
 
         $this->validate($_POST, [
-            'email' => 'required|unique:users',
-            'password' => 'required|email|confirmed|minSize:6|maxSize:16',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed|minSize:6|maxSize:16',
             'username' => 'required|noSpecialChars|minSize:8|maxSize:25',
         ]);
 

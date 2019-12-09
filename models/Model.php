@@ -67,6 +67,8 @@ Class Model {
         $table = self::getTable($model);
         $pdo = self::getBuilder()->getPDO();
 
+        $data = self::test_data($data);
+
         $keys = implode(', ', array_keys($data));
         $values = ':'. implode(', :', array_keys($data));
 
@@ -169,4 +171,16 @@ Class Model {
     }
 
 
+
+
+    public static function test_data($data)
+    {
+        foreach($data as $key => $value) {
+            $data[$key] = trim($value);
+            $data[$key] = stripslashes($value);
+            $data[$key] = htmlspecialchars($value);
+        }
+
+        return $data;
+    }
 }

@@ -41,7 +41,7 @@ class Controller {
         }elseif($type == 'auth' && !$user){
             return $this->redirectTo('/login');
         }elseif($type == 'guest' && $user){
-            return $this->redirectTo('/profile?id=' . $user->id);
+            return $this->redirectTo('/');
         }
     }
 

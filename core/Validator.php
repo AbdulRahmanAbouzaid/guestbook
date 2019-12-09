@@ -138,7 +138,7 @@ class Validator {
     public function noSpecialChars($input)
     {
         if (!preg_match("/^[a-zA-Z ]*$/",$input)) {
-            return $input . " can only be letters and white space";
+            return $input . " can only contain letters and white-spaces";
           }
         return false;
     }

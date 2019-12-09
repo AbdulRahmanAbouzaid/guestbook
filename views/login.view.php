@@ -39,7 +39,7 @@
                                 <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
                             </div>
                             <div class="form-group">
-                                <a href="#" class="signup-image-link">Create an account</a>
+                                <a href="/register" class="signup-image-link">Create an account</a>
                             </div>
                         </form>
                     </div>
