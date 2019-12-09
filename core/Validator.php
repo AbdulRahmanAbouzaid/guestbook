@@ -114,11 +114,32 @@ class Validator {
 
 
 
+    public function maxSize($input, $max_size)
+    {
+        $value = $this->request[$input];
+        if(strlen($value) > $max_size){
+            return $input . ' must be less than or equal '. $min_size .' characters ';
+        }
+
+        return false;
+    }
+
+
+
     public function email($input)
     {
         if (!filter_var($input, FILTER_VALIDATE_EMAIL)) {
             return "Invalid email format";
         }
+        return false;
+    }
+
+
+    public function noSpecialChars($input)
+    {
+        if (!preg_match("/^[a-zA-Z ]*$/",$input)) {
+            return $input . " can only be letters and white space";
+          }
         return false;
     }
 
