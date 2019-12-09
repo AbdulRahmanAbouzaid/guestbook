@@ -1,0 +1,12 @@
+{
+    "name": "GuestBook",
+    "description": "",
+    "autoload": {
+        "classmap": [
+            "./"
+        ]
+    },
+    "require": {
+        
+    }
+}
