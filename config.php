@@ -5,7 +5,7 @@ return[
 
 	'database' => [
 
-		'name' => '',
+		'name' => 'guestbook',
 
 		'username' => 'root',
 
