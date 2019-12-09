@@ -5,12 +5,15 @@ class UsersController extends Controller {
 
     public function showRegisterForm()
     {
+        $this->middleware('guest');
         require 'views/register.view.php';
     }
 
 
     public function register()
     {
+        $this->middleware('guest');
+
         $this->validate($_POST, [
             'email' => 'required|unique:users',
             'password' => 'required|confirmed|minSize:6',
@@ -31,6 +34,7 @@ class UsersController extends Controller {
 
     public function showLoginForm()
     {
+        $this->middleware('guest');
         require 'views/login.view.php';
     }
 
@@ -38,6 +42,8 @@ class UsersController extends Controller {
 
     public function login()
     {
+        $this->middleware('guest');
+
         session_start();        
 
         $this->validate($_POST, [
@@ -57,5 +63,16 @@ class UsersController extends Controller {
         $_SESSION['errors'][] = 'Invalid Email or Password, please try agian';
 
         return $this->redirectTo('/login');
+    }
+
+
+    public function logout()
+    {
+        $this->middleware('auth');
+
+        session_start();
+        unset($_SESSION['user_id']);
+        session_destroy();
+        return $this->redirectTo('login');
     }
 }
