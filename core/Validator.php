@@ -112,4 +112,14 @@ class Validator {
         return false;
     }
 
+
+
+    public function email($input)
+    {
+        if (!filter_var($input, FILTER_VALIDATE_EMAIL)) {
+            return "Invalid email format";
+        }
+        return false;
+    }
+
 }

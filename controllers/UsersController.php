@@ -16,8 +16,8 @@ class UsersController extends Controller {
 
         $this->validate($_POST, [
             'email' => 'required|unique:users',
-            'password' => 'required|confirmed|minSize:6',
-            'username' => 'required',
+            'password' => 'required|email|confirmed|minSize:6',
+            'username' => 'required|minSize:8',
         ]);
 
         $_POST['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT, ['cost' => 12]);
