@@ -12,6 +12,8 @@ class ComposerStaticInit4977ba3e06cb51442947ed833b272546
         'Composer\\Autoload\\ComposerStaticInit4977ba3e06cb51442947ed833b272546' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Connection' => __DIR__ . '/../..' . '/core/database/connection.php',
         'Controller' => __DIR__ . '/../..' . '/controllers/Controller.php',
+        'Message' => __DIR__ . '/../..' . '/models/Message.php',
+        'MessagesController' => __DIR__ . '/../..' . '/controllers/MessagesController.php',
         'Model' => __DIR__ . '/../..' . '/models/Model.php',
         'PagesController' => __DIR__ . '/../..' . '/controllers/PagesController.php',
         'QueryBuilder' => __DIR__ . '/../..' . '/core/database/queryBuilder.php',

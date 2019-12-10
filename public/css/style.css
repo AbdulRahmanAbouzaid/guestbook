@@ -589,4 +589,25 @@ label.valid {
     margin-right: 0px;
     margin-bottom: 10px; } }
 
+
+
+    
+.comment-wrapper .panel-body {
+  max-height:650px;
+  overflow:auto;
+}
+
+.comment-wrapper .media-list .media img {
+  width:64px;
+  height:64px;
+  border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+  border-bottom:1px dashed #efefef;
+  margin-bottom:25px;
+}
 /*# sourceMappingURL=style.css.map */
+.card-inner{
+  margin-left: 4rem;
+}

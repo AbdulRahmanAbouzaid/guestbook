@@ -1,3 +1,8 @@
+<?php 
+  if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +13,9 @@
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="/public/webfonts/material-icon/css/material-design-iconic-font.min.css">
-
+    <!-- bootstrap and jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
     <!-- Main css -->
     <link rel="stylesheet" href="/public/css/style.css">
 </head>
