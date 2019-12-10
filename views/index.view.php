@@ -11,7 +11,6 @@
 </head>
 <body>
 
-
 <div class="container">
 	<h2 class="text-center">Write something cool</h2>
 
@@ -34,9 +33,20 @@
         	        <!-- <p class="text-secondary text-center">15 Minutes Ago</p> -->
         	    </div>
         	    <div class="col-md-10">
-                    
+                    <div class="message-header">
             	        <p><strong><?= $message->user()->username ?></strong></p>
-
+                        <?php if($user->id == $message->user_id){ ?>
+                            <div class="dropdown float-right" style="position: absolute;top: 0px;right: 0px;">
+                              <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Edit</a>
+                                <a class="dropdown-item" href="messages/delete?id=<?=$message->id?>">Delete</a>
+                              </div>
+                            </div>
+                        <?php } ?>
+                    </div>
         	       <div class="clearfix"></div>
         	        <p><?= $message->body ?></p>
                     <form method="POST" action="/messages/add">
@@ -61,7 +71,20 @@
                 	        <!-- <p class="text-secondary text-center">15 Minutes Ago</p> -->
                 	    </div>
                 	    <div class="col-md-10">
-                	        <p><strong><?=$reply->user()->username?></strong></p>
+                            <div class="message-header">
+                    	        <p><strong><?=$reply->user()->username?></strong></p>
+                                <?php if($user->id == $reply->user_id){ ?>
+                                    <div class="dropdown float-right" style="position: absolute;top: 0px;right: 0px;">
+                                      <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                      </button>
+                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Edit</a>
+                                        <a class="dropdown-item" href="messages/delete?id=<?=$reply->id?>">Delete</a>
+                                      </div>
+                                    </div>
+                                <?php } ?>
+                            </div>
                 	        <p><?=$reply->body?></p>
                 	    </div>
         	        </div>

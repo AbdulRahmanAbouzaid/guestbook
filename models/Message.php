@@ -23,4 +23,19 @@ class Message extends Model {
     {
         return self::where('parent_id', '=', $this->id);
     }
+
+
+    public function isParentMsg()
+    {
+        return $this->parent_id == 0 ? true : false;
+    }
+
+
+
+    public function deleteReplies()
+    {
+        foreach ($this->replies() as $reply) {
+            self::delete($reply->id);
+        }
+    }
 }
