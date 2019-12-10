@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <!--  This file has been downloaded from https://bootdey.com  -->
-    <!--  All snippets are MIT license https://bootdey.com/license -->
     <title>Messages</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -32,7 +30,7 @@
         	        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
         	        <!-- <p class="text-secondary text-center">15 Minutes Ago</p> -->
         	    </div>
-        	    <div class="col-md-10">
+        	    <div class="col-md-10" id="message<?=$message->id?>">
                     <div class="message-header">
             	        <p><strong><?= $message->user()->username ?></strong></p>
                         <?php if($user->id == $message->user_id){ ?>
@@ -41,7 +39,7 @@
                                 Actions
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Edit</a>
+                                <a class="dropdown-item" onclick="showUpdateForm(<?=$message->id?>)">Edit</a>
                                 <a class="dropdown-item" href="messages/delete?id=<?=$message->id?>">Delete</a>
                               </div>
                             </div>
@@ -60,6 +58,18 @@
             	       </p>
                    </form>
         	    </div>
+                <?php if($user->id == $message->user_id){ ?>
+                    <div class="col-md-10" id="update-form<?=$message->id?>" style="display: none">
+                        <form method="POST" action="/messages/update">
+                            <div class="form-group">
+                                <textarea name="body" class="form-control" id="exampleFormControlTextarea3" rows="2" required><?=$message->body?></textarea>
+                            </div>
+                            <input type="hidden" name="message_id" value="<?=$message->id?>">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <a class="btn btn-danger" onclick="cancel(<?=$message->id?>)">cancel</a>
+                       </form>
+                    </div>
+                <?php } ?>
 	        </div>
             <?php foreach($message->replies() as $reply) {?>
             <!-- Replies Section Begin-->
@@ -70,7 +80,7 @@
                 	        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
                 	        <!-- <p class="text-secondary text-center">15 Minutes Ago</p> -->
                 	    </div>
-                	    <div class="col-md-10">
+                	    <div class="col-md-10" id="message<?=$reply->id?>">
                             <div class="message-header">
                     	        <p><strong><?=$reply->user()->username?></strong></p>
                                 <?php if($user->id == $reply->user_id){ ?>
@@ -79,7 +89,7 @@
                                         Actions
                                       </button>
                                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Edit</a>
+                                        <a class="dropdown-item" onclick="showUpdateForm(<?=$reply->id?>)">Edit</a>
                                         <a class="dropdown-item" href="messages/delete?id=<?=$reply->id?>">Delete</a>
                                       </div>
                                     </div>
@@ -87,6 +97,18 @@
                             </div>
                 	        <p><?=$reply->body?></p>
                 	    </div>
+                        <?php if($user->id == $reply->user_id){ ?>
+                            <div class="col-md-10" id="update-form<?=$reply->id?>" style="display: none">
+                                <form method="POST" action="/messages/update">
+                                    <div class="form-group">
+                                        <textarea name="body" class="form-control" id="exampleFormControlTextarea3" rows="2" required><?=$reply->body?></textarea>
+                                    </div>
+                                    <input type="hidden" name="message_id" value="<?=$reply->id?>">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <a class="btn btn-danger" onclick="cancel(<?=$reply->id?>)">cancel</a>
+                               </form>
+                            </div>
+                        <?php } ?>
         	        </div>
         	    </div>
             </div>
@@ -100,7 +122,21 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	
+<script>
+    function showUpdateForm(msg_id) {
+        var message = document.getElementById("message" + msg_id);
+        var updateForm = document.getElementById("update-form" + msg_id);
+        message.style.display = "none";
+        updateForm.style.display = "block";
+    }
+
+    function cancel(msg_id){
+        var message = document.getElementById("message" + msg_id);
+        var updateForm = document.getElementById("update-form" + msg_id);
+        updateForm.style.display = "none";
+        message.style.display = "block";
+    }
+
 </script>
 </body>
 </html>
