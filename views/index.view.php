@@ -10,8 +10,10 @@
 <body>
 
 <div class="container">
-	<h2 class="text-center">Write something cool</h2>
-
+    <div style="display: flex; justify-content: space-between;">
+    	<h2 class="text">Hello <?=$user->username?>, Write something cool</h2>
+        <a href="/logout">Logout</a>
+    </div>
     <form method="POST" action="/messages/add">
         <?php require 'layout/errors.view.php' ?>
     	<div class="form-group">
