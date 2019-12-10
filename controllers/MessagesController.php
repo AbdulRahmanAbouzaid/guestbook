@@ -9,4 +9,20 @@ class MessagesController extends Controller {
     }
 
 
+
+    public function addMessage()
+    {
+        $this->validate($_POST, [
+            'body' => 'required'
+        ]);
+
+        $user = $this->getLoggedUser();
+        $_POST['user_id'] = $user->id;
+
+        Message::create($_POST);
+
+        return $this->redirectTo('/');
+    }
+
+
 }

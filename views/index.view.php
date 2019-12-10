@@ -16,8 +16,9 @@
 	<h2 class="text-center">Write something cool</h2>
 
     <form method="POST" action="/messages/add">
+        <?php require 'layout/errors.view.php' ?>
     	<div class="form-group">
-            <textarea name="content" class="form-control" id="exampleFormControlTextarea3" rows="6"></textarea>
+            <textarea name="body" class="form-control" id="exampleFormControlTextarea3" rows="6"></textarea>
         </div>
         <div class="form-group">
             <button class="btn btn-primary" type="submit">Submit</button>
@@ -33,21 +34,26 @@
         	        <!-- <p class="text-secondary text-center">15 Minutes Ago</p> -->
         	    </div>
         	    <div class="col-md-10">
-        	        <p><strong><?= $message->user()->username ?></strong>
-        	       </p>
+                    
+            	        <p><strong><?= $message->user()->username ?></strong></p>
+
         	       <div class="clearfix"></div>
         	        <p><?= $message->body ?></p>
-                    <div class="form-group">
-                        <textarea class="form-control" id="exampleFormControlTextarea3" rows="2" placeholder="Leave a Reply to the Message"></textarea>
-                    </div>
-        	        <p>
-        	            <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i>Reply</a>
-        	       </p>
+                    <form method="POST" action="/messages/add">
+                        <?php require 'layout/errors.view.php' ?>
+                        <input type="hidden" name="parent_id" value="<?=$message->id?>">
+                        <div class="form-group">
+                            <textarea name="body" class="form-control" id="exampleFormControlTextarea3" rows="2" placeholder="Leave a Reply to the Message"></textarea>
+                        </div>
+            	        <p>
+            	            <button type="submit" class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i>Reply</button>
+            	       </p>
+                   </form>
         	    </div>
 	        </div>
             <?php foreach($message->replies() as $reply) {?>
             <!-- Replies Section Begin-->
-        	<div class="card card-inner">
+        	<div class="card card-inner" style="max-width: 1000px;">
         	    <div class="card-body">
         	        <div class="row">
                 	    <div class="col-md-2">
@@ -68,8 +74,9 @@
     <?php } ?>
 </div>
 
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	
 </script>
 </body>

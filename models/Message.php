@@ -6,9 +6,9 @@ class Message extends Model {
     public static function create($data)
     {
         Message::insert([
-            'user_id' => $user->id,
+            'user_id' => $data['user_id'],
             'body' => $data['body'],
-            'parent_id' => $data['parent_id'] ? $data['parent_id'] : 0
+            'parent_id' => isset($data['parent_id']) ? $data['parent_id'] : 0
         ]);
     }
 

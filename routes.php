@@ -8,3 +8,5 @@ $router->get('login', 'UsersController@showLoginForm');
 $router->post('login', 'UsersController@login');
 
 $router->get('logout', 'UsersController@logout');
+
+$router->post('messages/add', 'MessagesController@addMessage');
