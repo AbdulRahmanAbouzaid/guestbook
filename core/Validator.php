@@ -128,7 +128,7 @@ class Validator {
 
     public function email($input)
     {
-        if (!filter_var($input, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($this->request[$input], FILTER_VALIDATE_EMAIL)) {
             return "Invalid email format";
         }
         return false;
@@ -137,7 +137,7 @@ class Validator {
 
     public function noSpecialChars($input)
     {
-        if (!preg_match("/^[a-zA-Z ]*$/",$input)) {
+        if (!preg_match("/^[a-zA-Z ]*$/", $this->request[$input])) {
             return $input . " can only contain letters and white-spaces";
           }
         return false;

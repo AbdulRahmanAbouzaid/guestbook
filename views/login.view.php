@@ -1,5 +1,5 @@
 <?php
-    $title = "Sign Up";
+    $title = "Sign In";
     include 'layout/header.view.php';     
 ?>
 
@@ -13,6 +13,7 @@
                 </div>
 
                 <div class="signin-form">
+                    <?php include 'layout/errors.view.php'; ?>
                     <h2 class="form-title">Sign In</h2>
                     <form method="POST" action="/login" class="register-form" id="login-form">
                         <div class="form-group">

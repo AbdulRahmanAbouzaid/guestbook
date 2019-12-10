@@ -9,6 +9,7 @@
         <div class="container">
             <div class="signup-content">
                 <div class="signup-form">
+                    <?php include 'layout/errors.view.php'; ?>
                     <h2 class="form-title">Sign up</h2>
                     <form method="POST" action="/register" class="register-form" id="register-form">
                         <div class="form-group">
