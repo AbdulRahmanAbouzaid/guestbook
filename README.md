@@ -26,8 +26,9 @@
 
 <h2>Setting up the project:- </h2>
 <ul>
-  <li> Of course you need to install wamp or xamp </li>
+  <li> Of course you need to install wamp/xamp and Composer </li>
   <li> clone the project at the server directory</li>
+  <li> Run composer install </li>
   <li> import the db file named "guestbook.sql"</li>
   <li> You can run the project using  "php -S localhost:8000" command </li>
 </ul>
